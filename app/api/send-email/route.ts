@@ -3,6 +3,7 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
+
 export async function POST(req: Request) {
   try {
     const data = await req.json()
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
           <li><b>Tipo de proyecto:</b> ${data.projectType}</li>
         </ul>
 
-        <p><b>Descripción:</b></p>
+        <p><b>Descripción</b></p>
         <p>${data.description}</p>
 
         <p>Nos pondremos en contacto contigo en las próximas 24 horas.</p>
