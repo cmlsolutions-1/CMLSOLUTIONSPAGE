@@ -34,8 +34,17 @@ export function SocialLinks() {
               </a>
             </Button>
           </div>
-        </div>
+          
+        {/* Divider */}
+          <div className="h-px w-full bg-primary-foreground/20 mb-10" />
+
+          {/* Copyright */}
+          <p className="text-sm text-primary-foreground/80 text-center">
+            © 2026 <strong>CML Solutions</strong>. Todos los derechos reservados.
+          </p>
+          </div>
       </div>
     </section>
+    
   )
 }
