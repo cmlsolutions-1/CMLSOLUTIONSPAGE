@@ -1,3 +1,5 @@
+//components/quote-form.tsx
+
 "use client"
 
 import type React from "react"
@@ -26,26 +28,44 @@ export function QuoteForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulando envío de formulario
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    console.log("Datos de cotización:", formData)
-
-    toast({
-      title: "¡Solicitud Enviada!",
-      description: "Nos pondremos en contacto contigo en las próximas 24 horas.",
-    })
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      projectType: "",
-      description: "",
-    })
-    setIsSubmitting(false)
+  
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+  
+      if (!res.ok) {
+        throw new Error("Error al enviar el correo")
+      }
+  
+      toast({
+        title: "¡Solicitud Enviada!",
+        description: "Hemos enviado un correo de confirmación a tu email.",
+      })
+  
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        projectType: "",
+        description: "",
+      })
+    } catch (error) {
+      console.error(error)
+  
+      toast({
+        title: "Error",
+        description: "No se pudo enviar la solicitud. Intenta más tarde.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

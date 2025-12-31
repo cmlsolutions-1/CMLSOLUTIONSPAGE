@@ -4,14 +4,14 @@ import { Badge } from "@/components/ui/badge"
 const MOCK_PROJECTS = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Sistema de Gestión Empresarial",
     description:
-      "Plataforma de comercio electrónico completa con pasarela de pagos integrada y sistema de gestión de inventario.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
+      "Plataforma de gestión de pedidos, integrada a ERP syscafe y control de clientes.",
+    technologies: ["React + Vite", "Tailwind", "Node.js", "Mongo"],
     category: "Web Application",
-    image: "/modern-ecommerce-dashboard.png",
+    image: "/fr.png",
   },
-  {
+  /* {
     id: 2,
     title: "Sistema de Gestión Empresarial",
     description: "ERP personalizado para optimizar procesos de manufactura, ventas, inventario y recursos humanos.",
@@ -50,7 +50,7 @@ const MOCK_PROJECTS = [
     technologies: ["React", "GraphQL", "PostgreSQL", "Docker"],
     category: "Fintech",
     image: "/fintech-app-interface.jpg",
-  },
+  }, */
 ]
 
 export function Projects() {
