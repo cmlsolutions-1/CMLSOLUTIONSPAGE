@@ -1,4 +1,4 @@
-//app/api/send-email/route.ts
+// app/api/send-email/route.ts
 
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       },
     })
 
-    // Correo al cliente
+    // 1️⃣ Correo al CLIENTE
     await transporter.sendMail({
       from: `"CML Solutions" <${process.env.EMAIL_USER}>`,
       to: data.email,
@@ -35,6 +35,27 @@ export async function POST(req: Request) {
         <p>${data.description}</p>
 
         <p>Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+      `,
+    })
+
+    // 2️⃣ Correo INTERNO (CML Solutions)
+    await transporter.sendMail({
+      from: `"Formulario Web" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER, // te llega a ti
+      subject: "🚀 Nueva solicitud de cotización",
+      html: `
+        <h2>Nueva solicitud recibida</h2>
+
+        <ul>
+          <li><b>Nombre:</b> ${data.name}</li>
+          <li><b>Email:</b> ${data.email}</li>
+          <li><b>Empresa:</b> ${data.company || "No especificada"}</li>
+          <li><b>Teléfono:</b> ${data.phone}</li>
+          <li><b>Tipo de proyecto:</b> ${data.projectType}</li>
+        </ul>
+
+        <p><b>Descripción:</b></p>
+        <p>${data.description}</p>
       `,
     })
 
